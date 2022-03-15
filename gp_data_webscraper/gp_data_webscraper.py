@@ -47,6 +47,13 @@ def _sort_list_datasets(list_datasets) -> list[dict]:
     return sorted(list_datasets, key=lambda d: d['date'], reverse=True)
 
 def scrape_data(url) -> list[dict]:
+    """
+    Takes a url and returns list of dictionaries containing dataset id, date, and url for downloading the dataset as a csv file. List is ordered by date descending.
+        Parameters:
+            url (str): a url referencing a webpage in OpenDataNI
+        Returns:
+            sorted_list_datasets (list[dict]): a list of dictionaries with keys (id, date, url) ordered by date descending
+    """
     list_items = _get_list_items(url)
     list_datasets = _extract_list_datasets(list_items)
     sorted_list_datasets = _sort_list_datasets(list_datasets=list_datasets)
