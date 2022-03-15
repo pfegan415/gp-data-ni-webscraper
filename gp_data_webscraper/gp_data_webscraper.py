@@ -56,7 +56,7 @@ def __main() -> list[dict]:
     parser = argparse.ArgumentParser(description="Web Scraper for datasets with tag 'GP Practice' on OpenDataNI https://www.opendatani.gov.uk/.")
     parser.add_argument("url", type=str, help="url for webpage being scraped")
     args = parser.parse_args()
-    return scrape_data(url=args.url)
+    print(*scrape_data(url=args.url), sep='\n')
 
 if __name__ == "__main__":
     __main()
