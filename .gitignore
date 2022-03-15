@@ -1,1 +1,4 @@
 *.pytest_cache/
+/gp_data_webscraper/__pycache__/*
+/gp_data_webscraper/gp_data_webscraper/__pycache__/*
+/tests/__pycache__/*
