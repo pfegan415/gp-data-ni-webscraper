@@ -33,4 +33,4 @@ This web scraper works for the following url's:
 - https://www.opendatani.gov.uk/dataset/gp-practice-list-sizes
 - https://www.opendatani.gov.uk/dataset/gp-prescribing-data
 
-From root directory run `poetry run python3 gp_data_webscraper "<url>"`
+From root directory run `poetry run python3 gp_data_ni_webscraper/webscraper.py "<url>"`

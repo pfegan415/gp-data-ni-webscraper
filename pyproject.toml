@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "gp-data-webscraper"
-version = "0.1.2"
+name = "gp-data-ni-webscraper"
+version = "0.2.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Paul Fegan <pfegan415@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -14,6 +14,3 @@ pytest = "^7.0"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-gp-data-webscraper = "gp_data_webscraper.gp_data_webscraper:main"
