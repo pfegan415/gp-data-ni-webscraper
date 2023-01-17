@@ -1,0 +1,45 @@
+name: Publish Package
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.10'
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.1.12
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+      - name: Cache Poetry virtualenv
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: ~/.virtualenvs
+          key: poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            poetry-${{ hashFiles('**/poetry.lock') }}
+      - name: Install Dependencies
+        run: poetry install
+        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Build wheel
+        run: poetry build --format wheel
+      - name: Set Gemfury as repository
+        run: poetry config repositories.fury https://pypi.fury.io/pfegan415/
+      - name: Authenticate to Gemfury
+        run: poetry config http-basic.fury ${{ secrets.GEMFURY_AUTH_TOKEN }} NOPASS
+      - name: Publish wheel to Gemfury
+        run: poetry publish --repository fury --no-interaction
