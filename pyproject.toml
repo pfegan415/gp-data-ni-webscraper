@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "gp-data-ni-webscraper"
-version = "0.2.1"
+version = "0.2.2"
 description = ""
 authors = ["Paul Fegan <pfegan415@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 beautifulsoup4 = "4.11.1"
 
 [tool.poetry.dev-dependencies]
