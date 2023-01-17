@@ -20,6 +20,11 @@ def test_scrape_data_handles_title_with_csv_file_extension():
     assert dataset_list[0].get("date") ==  datetime.datetime(year=2022, month=2, day=1).strftime("%Y-%m")
 
 @pytest.mark.integration
+def test_non_existent_endpoint():
+    with pytest.raises(ValueError) as value_error:
+        webscraper.scrape_data("https://www.opendatani.gov.uk/dataset/non-existent-endpoint")
+
+@pytest.mark.integration
 def test_scrape_data_gp_practice_list_sizes():
     dataset_list = webscraper.scrape_data("https://www.opendatani.gov.uk/dataset/gp-practice-list-sizes")
     assert type(dataset_list) is list and len(dataset_list) > 0

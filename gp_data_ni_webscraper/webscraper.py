@@ -1,4 +1,5 @@
 from urllib.request import urlopen
+from urllib.error import HTTPError
 import ssl
 import datetime
 import argparse
@@ -10,7 +11,10 @@ LOGGER = logging.getLogger(__name__)
 
 def _get_html(url) -> str:
     LOGGER.info(f"Making request to url: {url}")
-    return urlopen(url, context=CONTEXT).read().decode("utf-8")
+    try:
+        return urlopen(url, context=CONTEXT).read().decode("utf-8")
+    except HTTPError:
+        raise ValueError("Unable to get HTML from site. Check URL is correct.")
 
 def _get_list_items(html) -> bs4.element.ResultSet:
     LOGGER.info("Getting list items")
